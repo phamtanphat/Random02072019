@@ -1,40 +1,26 @@
 package khoapham.ptp.phamtanphat.random02072019;
-
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-
-import java.util.Random;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    // 1 : Khai báo
+    TextView txtKetqua;
+    EditText edtSomin,edtSomax;
+    Button btnRandom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Builtin function
-//        int a = (int) Math.floor(Math.random()*5);
-        //trần nhà : làm tròn lên
-//        int b = (int) Math.ceil(1.1);
-        //sàn nhà : làm tròn xuống
-//        int b = (int) Math.floor(1.1);
-        //Tìm số chính phương 0 - 100
-//        int canbac2 = (int) Math.sqrt(100);
-////        Log.d("BBB",b + "");
-//        Log.d("BBB",canbac2 + "");
-        //Bài toán kiểm tra số chính phương
-//        for (int i = 0; i<= 100 ; i++){
-//            if (Math.sqrt(i) % 1 == 0){
-//                Log.d("BBB",i + "");
-//            }
-//        }
-//        Random random = new Random();
-//        for (int i = 0 ; i<20 ; i++){
-//            //(max - min + 1 ) + min : 5 - 45
-//            int number = random.nextInt(45 - 5 + 1) + 5;
-//            Log.d("BBB",number + "");
-//        }
         // 1 : Random so min va so max
 //            + Không số random bị trùng
 //            + Không được random quá tổng số (100 số - 100 lần)
@@ -42,5 +28,35 @@ public class MainActivity extends AppCompatActivity {
         // 2 : Hiển thị
 //            + Kiểu 1 : 1- 5 - 7 - 8 -
 //            + Kiểu 2 : 1- 5 - 7 - 8
+        //2 : Ánh xạ
+        //comand + / : comment code
+
+        txtKetqua = findViewById(R.id.textviewKetqua);
+        edtSomax = findViewById(R.id.edittextSomax);
+        edtSomin = findViewById(R.id.edittextSomin);
+        btnRandom = findViewById(R.id.buttonRandom);
+
+        // yêu cầu chức năng : Click button thì hiển thị số random
+        //Điều kiện cần : Phải có số để random
+        //Điều kiện đáp ứng :  Số - 2 edittext cung cấp số
+
+        btnRandom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String smin = edtSomin.getText().toString();
+                String smax = edtSomax.getText().toString();
+                //null khong co vùng nhớ , không thể kiểm tra dữ liệu null
+                //"" chuỗi rỗng java xử lý
+//                Log.d("BBB",  null);
+//                Log.d("BBB" , null);
+                if (!smin.equals("") && !smax.equals("")){
+                    Toast.makeText(MainActivity.this, "Có giá trị", Toast.LENGTH_SHORT).show();
+                }else{
+                    edtSomax.requestFocus();
+                    Toast.makeText(MainActivity.this, "Nhập thiếu giá trị", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 }
