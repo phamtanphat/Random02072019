@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     EditText edtSomin,edtSomax;
     Button btnRandom;
     Random random = new Random();
+    String chuoi = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,21 +43,26 @@ public class MainActivity extends AppCompatActivity {
         btnRandom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String smin = edtSomin.getText().toString();
                 String smax = edtSomax.getText().toString();
                 //null khong co vùng nhớ , không thể kiểm tra dữ liệu null
                 //"" chuỗi rỗng java xử lý
 //                Log.d("BBB",  null);
 //                Log.d("BBB" , null);
+                //Điều kiện 1 : phải có giá trị để random
                 if (!smin.equals("") && !smax.equals("")){
-                    Toast.makeText(MainActivity.this, "Có giá trị",Toast.LENGTH_LONG).show();
+                    //Xu lý chuỗi rỗng
+//                  Toast.makeText(MainActivity.this, "Có giá trị",Toast.LENGTH_LONG).show();
                     int somin = Integer.parseInt(smin);
                     int somax = Integer.parseInt(smax);
-
-                    //5 - 10
+                    //5 - 10 : xử lý random trong đoạn
                     int value = random.nextInt(somax - somin + 1) + somin ;
-
-                }else{
+                    chuoi +=    value + " - "; // 6 - 6 -
+                    txtKetqua.setText(chuoi);
+                }
+                //Điều kiện 2 : không có giá trị
+                else{
                     Toast.makeText(MainActivity.this, "Nhập thiếu giá trị",Toast.LENGTH_SHORT).show();
                 }
             }
