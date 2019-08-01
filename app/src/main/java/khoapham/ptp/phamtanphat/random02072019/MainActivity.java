@@ -10,13 +10,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     // 1 : Khai báo
     TextView txtKetqua;
     EditText edtSomin,edtSomax;
     Button btnRandom;
-
+    Random random = new Random();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,16 +32,13 @@ public class MainActivity extends AppCompatActivity {
 //            + Kiểu 2 : 1- 5 - 7 - 8
         //2 : Ánh xạ
         //comand + / : comment code
-
         txtKetqua = findViewById(R.id.textviewKetqua);
         edtSomax = findViewById(R.id.edittextSomax);
         edtSomin = findViewById(R.id.edittextSomin);
         btnRandom = findViewById(R.id.buttonRandom);
-
         // yêu cầu chức năng : Click button thì hiển thị số random
         //Điều kiện cần : Phải có số để random
         //Điều kiện đáp ứng :  Số - 2 edittext cung cấp số
-
         btnRandom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,10 +49,15 @@ public class MainActivity extends AppCompatActivity {
 //                Log.d("BBB",  null);
 //                Log.d("BBB" , null);
                 if (!smin.equals("") && !smax.equals("")){
-                    Toast.makeText(MainActivity.this, "Có giá trị", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Có giá trị",Toast.LENGTH_LONG).show();
+                    int somin = Integer.parseInt(smin);
+                    int somax = Integer.parseInt(smax);
+
+                    //5 - 10
+                    int value = random.nextInt(somax - somin + 1) + somin ;
+
                 }else{
-                    edtSomax.requestFocus();
-                    Toast.makeText(MainActivity.this, "Nhập thiếu giá trị", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Nhập thiếu giá trị",Toast.LENGTH_SHORT).show();
                 }
             }
         });
